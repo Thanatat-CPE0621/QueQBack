@@ -1,0 +1,29 @@
+{
+    "production": {
+        "jwt": {
+            "secret": "1ED&v3fxD9LfWXLosusCbcz@S1MoB&S8%nLn44vZ1c1jskb6rvxr5##JgDDP0WWv",
+            "lifetime": "2h"
+        },
+        "passwordSalt": "DJ4k8nWQjXXZSaPm",
+        "staticDirectory": "/var/www/real_estate/images/",
+        "apiVersion": "3.0.1"
+    },
+    "development": {
+        "jwt": {
+            "secret": "1ED&v3fxD9LfWXLosusCbcz@S1MoB&S8%nLn44vZ1c1jskb6rvxr5##JgDDP0WWv",
+            "lifetime": "2h"
+        },
+        "passwordSalt": "DJ4k8nWQjXXZSaPm",
+        "staticDirectory": "/var/www/real_estate/images/",
+        "apiVersion": "3.0.1"
+    },
+    "default": {
+        "jwt": {
+            "secret": "1ED&v3fxD9LfWXLosusCbcz@S1MoB&S8%nLn44vZ1c1jskb6rvxr5##JgDDP0WWv",
+            "lifetime": "2h"
+        },
+        "passwordSalt": "DJ4k8nWQjXXZSaPm",
+        "staticDirectory": "/var/www/real_estate/images/",
+        "apiVersion": "3.0.1"
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "production": {
+        "username": "queq_cm_manager",
+        "password": "MTK1bGHDfA7Qram0EPwM",
+        "database": "QueQ_Hospital_V02",
+        "ip": "test-db1.queq.me",
+        "port": "1433"
+    },
+    "development": {
+        "username": "queq_cm_manager",
+        "password": "MTK1bGHDfA7Qram0EPwM",
+        "database": "QueQ_Hospital_V02",
+        "ip": "test-db1.queq.me",
+        "port": "1433"
+    },
+    "default": {
+        "username": "queq_cm_manager",
+        "password": "MTK1bGHDfA7Qram0EPwM",
+        "database": "QueQ_Hospital_V02",
+        "ip": "test-db1.queq.me",
+        "port": "1433"
+    }
+}
