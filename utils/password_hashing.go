@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"time"
 	"bytes"
 	"crypto/sha256"
 	"encoding/gob"
@@ -10,6 +11,14 @@ import (
 
 	"gitlab.com/paiduay/queq-hospital-api/config"
 )
+
+// TokenGenerating - Generate user token
+func TokenGenerating (id string,password string) string {
+	h := sha256.New()
+	h.Write([]byte(config.Configs.TokenSalt + string(time.Now().Unix()) + id + password))
+	hashedString := fmt.Sprintf("%x", h.Sum(nil))
+	return hashedString[:50]
+}
 
 // PasswordHashing - Hash Password
 // mode: prod, dev

@@ -64,7 +64,7 @@ func LoginRequire () gin.HandlerFunc {
 	}
 }
 
-func superAdminRequired () gin.HandlerFunc {
+func SuperAdminRequired () gin.HandlerFunc {
 	return func (c *gin.Context) {
 		userToken := c.Request.Header.Get("userToken")
 		if userToken != "" {

@@ -45,7 +45,8 @@ func main () {
 	router := gin.New()
 	router.Use(gin.Logger())
 	router.Use(gin.Recovery())
-	router.Use(middlewares.CORSMiddleware())
+  router.Use(middlewares.CORSMiddleware())
+	router.Use(middlewares.TokenCheck())
 
 	router.NoRoute(func(c *gin.Context) {
 		c.JSON(http.StatusNotFound, utils.ErrorMessage("endpoint not found", 404))
@@ -55,6 +56,7 @@ func main () {
 	})
 
   controllers.RegisterStaffEndpoints(router.Group("/staff"))
+  controllers.RegisterStationEndpoints(router.Group("/station"))
 
 	router.Run(fmt.Sprintf(":%v", *port))
 }

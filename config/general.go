@@ -11,6 +11,7 @@ type GeneralConfigs struct {
 type GeneralConfigBody struct {
 	JWT             jwtConfigs `json:"jwt"`
 	PasswordSalt    string     `json:"passwordSalt"`
+	TokenSalt		    string     `json:"tokenSalt"`
 	APIVersion      string     `json:"apiVersion"`
 	StaticDirectory string     `json:"staticDirectory"`
 }

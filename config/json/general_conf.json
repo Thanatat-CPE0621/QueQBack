@@ -4,6 +4,7 @@
             "secret": "1ED&v3fxD9LfWXLosusCbcz@S1MoB&S8%nLn44vZ1c1jskb6rvxr5##JgDDP0WWv",
             "lifetime": "2h"
         },
+        "tokenSalt": "EaU4G6yEDgexn8hjI0uyujrHB",
         "passwordSalt": "DJ4k8nWQjXXZSaPm",
         "staticDirectory": "/var/www/real_estate/images/",
         "apiVersion": "3.0.1"
@@ -13,6 +14,7 @@
             "secret": "1ED&v3fxD9LfWXLosusCbcz@S1MoB&S8%nLn44vZ1c1jskb6rvxr5##JgDDP0WWv",
             "lifetime": "2h"
         },
+        "tokenSalt": "EaU4G6yEDgexn8hjI0uyujrHB",
         "passwordSalt": "DJ4k8nWQjXXZSaPm",
         "staticDirectory": "/var/www/real_estate/images/",
         "apiVersion": "3.0.1"
@@ -22,6 +24,7 @@
             "secret": "1ED&v3fxD9LfWXLosusCbcz@S1MoB&S8%nLn44vZ1c1jskb6rvxr5##JgDDP0WWv",
             "lifetime": "2h"
         },
+        "tokenSalt": "EaU4G6yEDgexn8hjI0uyujrHB",
         "passwordSalt": "DJ4k8nWQjXXZSaPm",
         "staticDirectory": "/var/www/real_estate/images/",
         "apiVersion": "3.0.1"
