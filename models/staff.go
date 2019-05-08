@@ -11,25 +11,25 @@ import (
 // Staff - for both model db and json
 type Staff struct {
 	// Staff
-	StaffID                    	uint32  	`gorm:"primary_key;AUTO_INCREMENT" json:"staff_id,omitempty"`
-	StaffName                  	*string 	`json:"staff_name" binding:"required"`
-	StaffType                  	*uint32 	`json:"staff_type,omitempty" binding:"required"`
-	LoginName                  	*string 	`json:"login_name,omitempty" binding:"required"`
-	LoginHashPassword          	*string 	`json:"login_hash_password,omitempty"`
-	StationID                  	*int    	`json:"station_id,omitempty" binding:"required"`
-	RoomID                     	*int    	`json:"room_id,omitempty" binding:"required"`
-	LangCode                   	*string 	`json:"lang_code,omitempty"`
-	Status                     	*int    	`gorm:"default:1" json:"status,omitempty"`
-	StaffHospitalLogoPath      	*string 	`json:"staff_hospital_logo_path,omitempty"`
-	StaffHospitalPrintLogoPath 	*string 	`json:"staff_hospital_print_logo_path,omitempty"`
-	UserToken                  	*string 	`gorm:"default:NULL" json:"user_token,omitempty"`
-	LastLoginDate            		*string 	`gorm:"default:NULL" json:"last_login_date,omitempty"`
-	LastLoginTime            		*string 	`gorm:"default:NULL" json:"last_login_time,omitempty"`
-	StaffParameter            	*string  	`json:"staff_parameter,omitempty"`
-	OrderNo                   	*uint32  	`json:"order_no,omitempty"`
-	CreatedDate               	*string  	`gorm:"default:CURRENT_TIMESTAMP" json:"created_date,omitempty"`
-	UpdatedDate               	*string  	`gorm:"default:CURRENT_TIMESTAMP" json:"updated_date,omitempty"`
-	AppVersion                	*string  	`gorm:"default:NULL" json:"app_version,omitempty"`
+	StaffID                    uint32  `gorm:"primary_key;AUTO_INCREMENT" json:"staff_id,omitempty"`
+	StaffName                  *string `json:"staff_name" binding:"required"`
+	StaffType                  *uint32 `json:"staff_type,omitempty" binding:"required"`
+	LoginName                  *string `json:"login_name,omitempty" binding:"required"`
+	LoginHashPassword          *string `json:"login_hash_password,omitempty"`
+	StationID                  *int    `json:"station_id,omitempty" binding:"required"`
+	RoomID                     *int    `json:"room_id,omitempty" binding:"required"`
+	LangCode                   *string `json:"lang_code,omitempty"`
+	Status                     *int    `gorm:"default:1" json:"status,omitempty"`
+	StaffHospitalLogoPath      *string `json:"staff_hospital_logo_path,omitempty"`
+	StaffHospitalPrintLogoPath *string `json:"staff_hospital_print_logo_path,omitempty"`
+	UserToken                  *string `gorm:"default:NULL" json:"user_token,omitempty"`
+	LastLoginDate              *string `gorm:"default:NULL" json:"last_login_date,omitempty"`
+	LastLoginTime              *string `gorm:"default:NULL" json:"last_login_time,omitempty"`
+	StaffParameter             *string `json:"staff_parameter,omitempty"`
+	OrderNo                    *uint32 `json:"order_no,omitempty"`
+	CreatedDate                *string `gorm:"default:CURRENT_TIMESTAMP" json:"created_date,omitempty"`
+	UpdatedDate                *string `gorm:"default:CURRENT_TIMESTAMP" json:"updated_date,omitempty"`
+	AppVersion                 *string `gorm:"default:NULL" json:"app_version,omitempty"`
 
 	// Staff type
 	StaffTypeName                  *string `gorm:"-" json:"staff_type_name,omitempty"`
@@ -44,7 +44,7 @@ type Staff struct {
 	HospitalID   *uint32 `gorm:"-" json:"hospital_id,omitempty"`
 	HospitalName *string `gorm:"-" json:"hospital_name,omitempty"`
 	StationName  *string `gorm:"-" json:"station_name,omitempty"`
-	RoomName  	 *string `gorm:"-" json:"room_name,omitempty"`
+	RoomName     *string `gorm:"-" json:"room_name,omitempty"`
 }
 
 // StaffInfomation ....
@@ -52,8 +52,8 @@ type StaffInfomation struct {
 	User            Staff     `json:"user"`
 	Role            StaffType `json:"role,omitempty"`
 	Hospital        Hospital  `json:"hospital,omitempty"`
-	Station					Station		`json:"station,omitempty"`
-	Room						Room			`json:"room,omitempty"`
+	Station         Station   `json:"station,omitempty"`
+	Room            Room      `json:"room,omitempty"`
 	QueueNumberType *uint32   `json:"queueNumberType,omitempty"`
 	ReceiptAmount   *string   `json:"receiptAmount,omitempty"`
 	StationName     *string   `json:"stationName,omitempty"`
@@ -61,14 +61,14 @@ type StaffInfomation struct {
 
 // ReorderStaffModel ...
 type ReorderStaffModel struct {
-	HospitalID 	string 							`json:"hospitalID" binding:"required"`
-	Data 				[]ReorderStaffList 	`json:"data" binding:"required"`
+	HospitalID string             `json:"hospitalID" binding:"required"`
+	Data       []ReorderStaffList `json:"data" binding:"required"`
 }
 
 // ReorderStaffList :
 type ReorderStaffList struct {
-	ID				uint32		`json:"id"`
-	OrderNO		uint32		`json:"order_no"`
+	ID      uint32 `json:"id"`
+	OrderNO uint32 `json:"order_no"`
 }
 
 // GetHospitalIDbyStaffToken - get a users
@@ -134,7 +134,7 @@ func GetAdminStaffList(staffs *[]Staff, size int, page int, hID string) error {
 }
 
 // GetAdminStaffListInStation - get admin list in station
-func GetAdminStaffListInStation (staffs *[]Staff, size int, page int, sID string) error {
+func GetAdminStaffListInStation(staffs *[]Staff, size int, page int, sID string) error {
 	where := "ST.station_id = S.station_id and S.hospital_id = H.hospital_id and ST.staff_type = STT.staff_type_id "
 	if sID != "" {
 		where += fmt.Sprintf("and S.station_id like %v ", sID)
@@ -160,7 +160,7 @@ func GetAdminStaffListInStation (staffs *[]Staff, size int, page int, sID string
 }
 
 // GetAdminStaffListInRoom - get admin list in station
-func GetAdminStaffListInRoom (staffs *[]Staff, size int, page int, rID string) error {
+func GetAdminStaffListInRoom(staffs *[]Staff, size int, page int, rID string) error {
 	where := "ST.station_id = S.station_id and S.hospital_id = H.hospital_id and ST.staff_type = STT.staff_type_id "
 	if rID != "" {
 		where += fmt.Sprintf("and R.room_id like %v ", rID)
@@ -186,7 +186,7 @@ func GetAdminStaffListInRoom (staffs *[]Staff, size int, page int, rID string) e
 }
 
 // GetStaffInfomation : get staff infomation (staff, stafftype, hospital, station)
-func GetStaffInfomation (staff *StaffInfomation, staffID string) error {
+func GetStaffInfomation(staff *StaffInfomation, staffID string) error {
 	row := db.Raw(`
 		WITH SAH as (
 	    SELECT S.*, H.hospital_name FROM dbo.Station as S, dbo.Hospital as H WHERE S.hospital_id = H.hospital_id
@@ -204,10 +204,10 @@ func GetStaffInfomation (staff *StaffInfomation, staffID string) error {
     WHERE ST.staff_id=?
 	`, staffID).Row()
 	row.Scan(&staff.User.StaffID, &staff.User.StaffName, &staff.User.LoginName, &staff.User.UserToken,
-					&staff.User.CreatedDate, &staff.User.UpdatedDate, &staff.User.LastLoginDate, &staff.User.LastLoginTime,
-					&staff.Role.StaffTypeID, &staff.Role.StaffTypeName,
-					&staff.Hospital.HospitalID, &staff.Hospital.HospitalName, &staff.Station.StationID, &staff.Station.StationName,
-					&staff.Room.RoomID, &staff.Room.RoomName)
+		&staff.User.CreatedDate, &staff.User.UpdatedDate, &staff.User.LastLoginDate, &staff.User.LastLoginTime,
+		&staff.Role.StaffTypeID, &staff.Role.StaffTypeName,
+		&staff.Hospital.HospitalID, &staff.Hospital.HospitalName, &staff.Station.StationID, &staff.Station.StationName,
+		&staff.Room.RoomID, &staff.Room.RoomName)
 	db.Where("staff_id=?", staffID).Table("StaffConfig").Find(&staff.User.StaffConfig)
 	return nil
 }
@@ -243,7 +243,7 @@ func CheckUserExistbyID(staffID uint64) bool {
 }
 
 // StaffLogin : return is error, is found user, error
-func StaffLogin (staff *Staff, data *StaffInfomation) (bool, bool, error) {
+func StaffLogin(staff *Staff, data *StaffInfomation) (bool, bool, error) {
 	var superAdmin uint32 = 53
 	var password *string
 
@@ -280,7 +280,7 @@ func StaffLogin (staff *Staff, data *StaffInfomation) (bool, bool, error) {
 }
 
 // CreateStaff : create staff
-func CreateStaff (staff *Staff) error {
+func CreateStaff(staff *Staff) error {
 	staff.LoginHashPassword = utils.PasswordHashing(*staff.LoginHashPassword)
 	tx := db.Begin()
 	if err := tx.Table("Staff").Create(&staff).Error; err != nil {
@@ -296,7 +296,7 @@ func CreateStaff (staff *Staff) error {
 }
 
 // EditStaff : edit staff
-func EditStaff (staff *Staff) error {
+func EditStaff(staff *Staff) error {
 	tx := db.Begin()
 	staff.LoginHashPassword = utils.PasswordHashing(*staff.LoginHashPassword)
 	if err := tx.Table("Staff").Where("staff_id = ?", staff.StaffID).Save(&staff).Error; err != nil {
@@ -312,7 +312,7 @@ func EditStaff (staff *Staff) error {
 }
 
 // ReorderStaffInHos ...
-func ReorderStaffInHos (staff ReorderStaffModel) error {
+func ReorderStaffInHos(staff ReorderStaffModel) error {
 	tx := db.Begin()
 	jobs := make(chan ReorderStaffList, len(staff.Data))
 	err := make(chan error, len(staff.Data))
@@ -336,7 +336,7 @@ func ReorderStaffInHos (staff ReorderStaffModel) error {
 	return nil
 }
 
-func reorderWorker (tx *gorm.DB, jobs <-chan ReorderStaffList, err chan<-error) {
+func reorderWorker(tx *gorm.DB, jobs <-chan ReorderStaffList, err chan<- error) {
 	for j := range jobs {
 		if queryErr := tx.Exec("UPDATE Staff SET order_no = ? WHERE staff_id = ?", j.OrderNO, j.ID).Error; err != nil {
 			err <- queryErr

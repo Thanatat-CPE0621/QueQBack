@@ -12,6 +12,7 @@ type StaffType struct {
 	IsSuperAdmin *bool `gorm:"-" json:"is_super_admin,omitempty"`
 }
 
+// GetStaffTypeList : get list of staff type
 func GetStaffTypeList(types *[]StaffType) error {
 	if err := db.Table("StaffType").Find(&types).Error; err != nil {
 		return err

@@ -26,6 +26,7 @@ func CORSMiddleware () gin.HandlerFunc {
 	}
 }
 
+// TokenCheck : check the basic token
 func TokenCheck () gin.HandlerFunc {
 	return func (c *gin.Context) {
 		auth := c.Request.Header.Get("Authorization")
@@ -41,6 +42,7 @@ func TokenCheck () gin.HandlerFunc {
 	}
 }
 
+// LoginRequire : check if the user login or not
 func LoginRequire () gin.HandlerFunc {
 	return func (c *gin.Context) {
 		userToken := c.Request.Header.Get("userToken")
@@ -64,6 +66,7 @@ func LoginRequire () gin.HandlerFunc {
 	}
 }
 
+// SuperAdminRequired : check if the user are superadmin
 func SuperAdminRequired () gin.HandlerFunc {
 	return func (c *gin.Context) {
 		userToken := c.Request.Header.Get("userToken")
@@ -77,7 +80,7 @@ func SuperAdminRequired () gin.HandlerFunc {
 				c.Next()
 			}
 		} else {
-			c.AbortWithStatusJSON(http.StatusOK, utils.ErrorMessage("unauthorized", http.StatusUnauthorized))
+			c.AbortWithStatusJSON(http.StatusOK, utils.ErrorMessage("access denied", http.StatusForbidden))
 		}
 	}
 }

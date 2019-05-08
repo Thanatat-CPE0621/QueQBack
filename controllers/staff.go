@@ -2,9 +2,9 @@ package controllers
 
 import (
 	"fmt"
-	"strconv"
-	"net/http"
 	"mime/multipart"
+	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 
@@ -34,7 +34,7 @@ func RegisterStaffEndpoints(router *gin.RouterGroup) {
 	{
 		staffRouter.GET("/info/:staffID", getStaffInfomation)
 		staffRouter.POST("/create", createStaff)
-		staffRouter.POST("/imgUpload", uploadImage)
+		staffRouter.POST("/upload/image", uploadImage)
 		staffRouter.POST("/reorder", reorderStaff)
 		staffRouter.POST("/edit/:staffID", editStaff)
 	}
@@ -63,7 +63,7 @@ func getStaffList(c *gin.Context) {
 	c.AbortWithStatusJSON(http.StatusOK, utils.SuccessMessage(staffs))
 }
 
-func getAdminList (c *gin.Context) {
+func getAdminList(c *gin.Context) {
 	var staffs []models.Staff
 	size, err := strconv.Atoi(c.Query("size"))
 	if err != nil {
@@ -85,7 +85,7 @@ func getAdminList (c *gin.Context) {
 	c.AbortWithStatusJSON(http.StatusOK, utils.SuccessMessage(staffs))
 }
 
-func getStaffRoleList (c *gin.Context) {
+func getStaffRoleList(c *gin.Context) {
 	var typelist []models.StaffType
 	if err := models.GetStaffTypeList(&typelist); err != nil {
 		fmt.Println(err)
@@ -95,7 +95,7 @@ func getStaffRoleList (c *gin.Context) {
 	c.AbortWithStatusJSON(http.StatusOK, utils.SuccessMessage(typelist))
 }
 
-func getUserByStation (c *gin.Context) {
+func getUserByStation(c *gin.Context) {
 	var staffs []models.Staff
 	size, err := strconv.Atoi(c.Query("size"))
 	if err != nil {
@@ -117,7 +117,7 @@ func getUserByStation (c *gin.Context) {
 	c.AbortWithStatusJSON(http.StatusOK, utils.SuccessMessage(staffs))
 }
 
-func getUserByRoom (c *gin.Context) {
+func getUserByRoom(c *gin.Context) {
 	var staffs []models.Staff
 	size, err := strconv.Atoi(c.Query("size"))
 	if err != nil {
@@ -139,7 +139,7 @@ func getUserByRoom (c *gin.Context) {
 	c.AbortWithStatusJSON(http.StatusOK, utils.SuccessMessage(staffs))
 }
 
-func getStaffInfomation (c *gin.Context) {
+func getStaffInfomation(c *gin.Context) {
 	staffID := c.Param("staffID")
 	var staffInfo models.StaffInfomation
 	if err := models.GetStaffInfomation(&staffInfo, staffID); err != nil {
@@ -148,7 +148,7 @@ func getStaffInfomation (c *gin.Context) {
 	c.AbortWithStatusJSON(http.StatusOK, utils.SuccessMessage(staffInfo))
 }
 
-func checkIfUsernameExist (c *gin.Context) {
+func checkIfUsernameExist(c *gin.Context) {
 	loginName := c.Param("uname")
 	var stationID uint64
 	var err error
@@ -169,7 +169,7 @@ func checkIfUsernameExist (c *gin.Context) {
 	}))
 }
 
-func createStaff (c *gin.Context) {
+func createStaff(c *gin.Context) {
 	var staff models.Staff
 	c.BindJSON(&staff)
 	if isDuplicated := models.FindDuplicateStaff(&staff); isDuplicated {
@@ -185,7 +185,7 @@ func createStaff (c *gin.Context) {
 	}))
 }
 
-func uploadImage (c *gin.Context) {
+func uploadImage(c *gin.Context) {
 	var file *multipart.FileHeader
 	var src multipart.File
 	var err error
@@ -205,7 +205,7 @@ func uploadImage (c *gin.Context) {
 	}))
 }
 
-func reorderStaff (c *gin.Context) {
+func reorderStaff(c *gin.Context) {
 	var order models.ReorderStaffModel
 	if err := c.BindJSON(&order); err != nil {
 		fmt.Println(err)
@@ -222,7 +222,7 @@ func reorderStaff (c *gin.Context) {
 }
 
 ////// Staff edit in progress
-func editStaff (c *gin.Context) {
+func editStaff(c *gin.Context) {
 	var staff models.Staff
 	var staffID uint64
 	var err error
@@ -252,7 +252,7 @@ func editStaff (c *gin.Context) {
 	}))
 }
 
-func staffLogin (c *gin.Context) {
+func staffLogin(c *gin.Context) {
 	var data models.StaffInfomation
 	username := c.PostForm("login_name")
 	password := c.PostForm("password")
