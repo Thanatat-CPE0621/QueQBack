@@ -48,10 +48,9 @@ func LoginRequire () gin.HandlerFunc {
 		userToken := c.Request.Header.Get("userToken")
 		if userToken != "" {
 			staff := models.Staff{}
-			if err := models.GetHospitalIDbyStaffToken(&staff, userToken); err != nil {
+			if err := models.GetTokenbyStaffToken(&staff, userToken); err != nil {
 				fmt.Println(err)
 				c.AbortWithStatusJSON(http.StatusOK, utils.ErrorMessage("Not found!", http.StatusNotFound))
-				return
 			}
 			if staff.StaffID != 0 {
 				c.Next()
@@ -72,15 +71,20 @@ func SuperAdminRequired () gin.HandlerFunc {
 		userToken := c.Request.Header.Get("userToken")
 		if userToken != "" {
 			staff := models.Staff{}
-			if err := models.GetHospitalIDbyStaffToken(&staff, userToken); err != nil {
+			if err := models.GetTokenbyStaffToken(&staff, userToken); err != nil {
 				fmt.Println(err)
 				c.AbortWithStatusJSON(http.StatusOK, utils.ErrorMessage("internal error", http.StatusInternalServerError))
+				return
 			}
-			if staff.StaffID != 0 {
+			if *staff.StaffType == uint32(53) {
 				c.Next()
+			} else {
+				c.AbortWithStatusJSON(http.StatusOK, utils.ErrorMessage("access denied", http.StatusForbidden))
+				return
 			}
 		} else {
-			c.AbortWithStatusJSON(http.StatusOK, utils.ErrorMessage("access denied", http.StatusForbidden))
+			c.AbortWithStatusJSON(http.StatusOK, utils.ErrorMessage("unauthorized", http.StatusUnauthorized))
+			return
 		}
 	}
 }

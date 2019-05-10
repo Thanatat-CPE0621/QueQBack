@@ -71,8 +71,8 @@ type ReorderStaffList struct {
 	OrderNO uint32 `json:"order_no"`
 }
 
-// GetHospitalIDbyStaffToken - get a users
-func GetHospitalIDbyStaffToken(staff *Staff, staffToken string) error {
+// GetTokenbyStaffToken - get a users
+func GetTokenbyStaffToken(staff *Staff, staffToken string) error {
 	if err := db.Where("user_token = ?", staffToken).Table("Staff").First(&staff).Error; err != nil {
 		return err
 	}

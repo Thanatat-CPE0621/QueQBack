@@ -43,6 +43,14 @@ type Station struct {
 	HospitalName *string `gorm:"-" json:"hospital_name,omitempty"`
 	RoomAmount   *int    `gorm:"-" json:"room_amount,omitempty"`
 	RowIndex     *int    `gorm:"-" json:"row_index,omitempty"`
+
+	AvgTime     	*int    `gorm:"-" json:"avgQueueingTime,omitempty"`
+	QueueAmount   *int    `gorm:"-" json:"queues,omitempty"`
+	QueueAll     	*int    `gorm:"-" json:"queueAll,omitempty"`
+	MaxQTime     	*int    `gorm:"-" json:"maxQueueingTime,omitempty"`
+	MaxQNumber    *string	`gorm:"-" json:"maxQueueNumber,omitempty"`
+	MinQTime     	*int    `gorm:"-" json:"minQueueingTime,omitempty"`
+	MinQNumber    *string	`gorm:"-" json:"minQueueingNumber,omitempty"`
 }
 
 // HighWaittime models for json
